@@ -3,64 +3,265 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon, XMarkIcon, CurrencyDollarIcon } from '@heroicons/react/24/solid';
+
+const navItems = [
+  { name: 'About', href: '/about' },
+  { 
+    name: 'Services', 
+    href: '/services',
+    dropdown: [
+      { name: 'Project Management', href: '/services/project-management' },
+      { name: 'Cost Management', href: '/services/cost-management' },
+      { name: 'EHS Management', href: '/services/ehs-management' },
+      { name: 'Quality Audits', href: '/services/quality-audits' },
+    ]
+  },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact', href: '/contact' },
+];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState('/');
+  const [openDropdown, setOpenDropdown] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+
+    setActiveItem(window.location.pathname);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : ''}`}>
-      <nav className="container mx-auto flex items-center justify-between px-6 py-4">
-        <Link href="/" className="relative w-40 h-16">
-          <Image
-            src="/images/projects/logo.jpeg"
-            alt="Logo"
-            fill
-            className="object-contain"
-          />
-        </Link>
-        
-        <div className="hidden md:flex gap-8">
-          <Link href="/about" className="text-gray-700 hover:text-primary">About</Link>
-          <Link href="/products" className="text-gray-700 hover:text-primary">Products</Link>
-          <Link href="/contact" className="text-gray-700 hover:text-primary">Contact</Link>
-        </div>
+    <header 
+      className={`fixed w-full z-50 transition-all duration-300 px-4 ${
+        isScrolled 
+          ? 'mt-0' 
+          : 'mt-2'
+      }`}
+    >
+      <div className={`max-w-[1200px] mx-auto rounded-xl transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/80 backdrop-blur-xl shadow-lg'
+          : 'bg-white/50 backdrop-blur-lg shadow-md'
+      }`}>
+        <nav className="flex items-center justify-between px-6 py-4">
+          {/* Logo shifted right */}
+          <div className="flex-shrink-0 relative z-10 ml-6">
+            <Link href="/" className="block relative w-[160px] h-[60px]">
+              <Image
+                src="/images/projects/logo.jpeg"
+                alt="Logo"
+                fill
+                sizes="160px"
+                className="object-contain object-left"
+                priority
+              />
+            </Link>
+          </div>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center justify-center gap-2">
+            {navItems.map((item) => (
+              <div key={item.name} className="relative group">
+                {item.dropdown ? (
+                  <>
+                    <button
+                      className={`px-4 py-2 text-base font-bold rounded-lg transition-all duration-300 inline-flex items-center gap-1
+                        ${activeItem.startsWith(item.href)
+                          ? 'text-primary bg-primary/10' 
+                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
+                        }`}
+                      onClick={() => setOpenDropdown(openDropdown === item.name ? '' : item.name)}
+                    >
+                      {item.name}
+                      <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {/* Dropdown Menu */}
+                    <div className="absolute left-0 mt-1 w-56 origin-top-left transition-all duration-200 opacity-0 translate-y-2 invisible 
+                      group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible">
+                      <div className="rounded-xl bg-white shadow-lg ring-1 ring-black/5 overflow-hidden">
+                        <div className="p-2">
+                          {item.dropdown.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.href}
+                              className={`block px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300
+                                ${activeItem === subItem.href
+                                  ? 'text-primary bg-primary/10'
+                                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
+                                }`}
+                              onClick={() => {
+                                setActiveItem(subItem.href);
+                                setOpenDropdown('');
+                              }}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`px-4 py-2 text-base font-bold rounded-lg transition-all duration-300 
+                      ${activeItem === item.href 
+                        ? 'text-primary bg-primary/10' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
+                      }`}
+                    onClick={() => setActiveItem(item.href)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
 
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <XMarkIcon className="w-6 h-6" />
-          ) : (
-            <Bars3Icon className="w-6 h-6" />
-          )}
-        </button>
-      </nav>
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/login"
+              className="px-4 py-2 text-base font-bold text-gray-700 hover:text-gray-900 
+                transition-all duration-300 rounded-lg hover:bg-gray-50/50"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/request-quote"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors duration-200"
+            >
+              <CurrencyDollarIcon className="w-4 h-4" />
+              Get Quote
+            </Link>
+          </div>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="md:hidden bg-white p-4"
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
           >
-            <Link href="/about" className="block py-2">About</Link>
-            <Link href="/products" className="block py-2">Products</Link>
-            <Link href="/contact" className="block py-2">Contact</Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {isMobileMenuOpen ? (
+              <XMarkIcon className="w-6 h-6" />
+            ) : (
+              <Bars3Icon className="w-6 h-6" />
+            )}
+          </button>
+        </nav>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden border-t border-gray-100"
+            >
+              <div className="flex flex-col py-4 px-6 bg-white/50 backdrop-blur-lg rounded-b-xl">
+                {navItems.map((item) => (
+                  <div key={item.name}>
+                    {item.dropdown ? (
+                      <>
+                        <button
+                          className={`w-full px-4 py-3 text-base font-bold rounded-lg transition-all duration-300 text-left
+                            flex items-center justify-between
+                            ${activeItem.startsWith(item.href)
+                              ? 'text-primary bg-primary/10'
+                              : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
+                            }`}
+                          onClick={() => setOpenDropdown(openDropdown === item.name ? '' : item.name)}
+                        >
+                          {item.name}
+                          <svg 
+                            className={`w-4 h-4 transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`} 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        {openDropdown === item.name && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="pl-3"
+                          >
+                            {item.dropdown.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                className={`block px-4 py-2.5 text-sm font-bold rounded-lg transition-all duration-300
+                                  ${activeItem === subItem.href
+                                    ? 'text-primary bg-primary/10'
+                                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
+                                  }`}
+                                onClick={() => {
+                                  setActiveItem(subItem.href);
+                                  setIsMobileMenuOpen(false);
+                                  setOpenDropdown('');
+                                }}
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`block px-4 py-3 text-base font-bold rounded-lg transition-all duration-300
+                          ${activeItem === item.href 
+                            ? 'text-primary bg-primary/10' 
+                            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
+                          }`}
+                        onClick={() => {
+                          setActiveItem(item.href);
+                          setIsMobileMenuOpen(false);
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+                <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
+                  <Link
+                    href="/login"
+                    className="px-4 py-2.5 text-base font-bold text-gray-700 hover:text-gray-900 
+                      transition-all duration-300 rounded-lg hover:bg-gray-50/50 text-center"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/request-quote"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-white 
+                      text-sm font-bold rounded-lg transition-all duration-300 hover:bg-primary-dark"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <CurrencyDollarIcon className="w-4 h-4" />
+                    Request Quote
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </header>
   );
 }
