@@ -7,22 +7,26 @@ export default function Projects() {
     {
       title: 'Solar Battery Installation',
       category: 'Residential',
-      image: '/images/projects/solar-battery.jpg'
+      image: '/images/projects/solar-battery.jpg',
+      description: 'Reliable energy storage solution for residential solar systems.'
     },
     {
       title: 'Industrial UPS System',
       category: 'Industrial',
-      image: '/images/projects/mini-ups.jpg'
+      image: '/images/projects/mini-ups.jpg',
+      description: 'Uninterrupted power supply systems for critical industrial applications.'
     },
     {
       title: 'Custom Battery Pack',
       category: 'Commercial',
-      image: '/images/projects/battery-pack.jpg'
+      image: '/images/projects/battery-pack.jpg',
+      description: 'Tailored energy storage solutions for commercial buildings and facilities.'
     },
     {
       title: 'Grid Storage Solution',
       category: 'Utility',
-      image: '/images/projects/grid-storage.jpg'
+      image: '/images/projects/grid-storage.jpg',
+      description: 'Large-scale energy storage for grid stability and peak shaving.'
     }
   ];
 
@@ -50,19 +54,30 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="group cursor-pointer"
+              className="cursor-pointer"
             >
-              <div className="relative h-80 overflow-hidden rounded-xl shadow-lg hover:shadow-green-300/50 hover:shadow-xl transition-all duration-500 border border-green-200">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-green-300 text-sm font-medium mb-2">{project.category}</p>
-                    <h3 className="text-white text-xl font-semibold">{project.title}</h3>
+              <div className="bg-white rounded-xl shadow-md hover:shadow-lg hover:shadow-green-300/50 transition-all duration-300 overflow-hidden border border-green-100">
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute top-0 right-0 bg-green-600 text-white px-3 py-1 m-2 rounded-full text-xs font-medium">
+                    {project.category}
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{project.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{project.description}</p>
+                  <div className="flex justify-end">
+                    <button className="text-green-600 hover:text-green-800 text-sm font-medium flex items-center transition-colors duration-300">
+                      Learn more
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>

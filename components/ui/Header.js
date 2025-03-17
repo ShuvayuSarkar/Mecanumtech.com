@@ -45,34 +45,35 @@ export default function Header() {
           : 'mt-2'
       }`}
     >
-      <div className={`max-w-[1200px] mx-auto rounded-xl transition-all duration-300 ${
+      {/* Increased max-width to 1600px */}
+      <div className={`max-w-[1600px] mx-auto rounded-xl transition-all duration-300 ${
         isScrolled
           ? 'bg-white/80 backdrop-blur-xl shadow-lg'
           : 'bg-white/50 backdrop-blur-lg shadow-md'
       }`}>
-        <nav className="flex items-center justify-between px-6 py-4">
-          {/* Logo shifted right */}
-          <div className="flex-shrink-0 relative z-10 ml-6">
-            <Link href="/" className="block relative w-[160px] h-[60px]">
+        <nav className="flex items-center justify-between px-8 py-4"> {/* Increased horizontal padding */}
+          {/* Logo section with adjusted size */}
+          <div className="flex-shrink-0 relative z-10 ml-4"> {/* Reduced left margin */}
+            <Link href="/" className="block relative w-[180px] h-[65px]"> {/* Increased logo size */}
               <Image
                 src="/images/projects/logo.jpeg"
                 alt="Logo"
                 fill
-                sizes="160px"
+                sizes="180px"
                 className="object-contain object-left"
                 priority
               />
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center gap-2">
+          {/* Desktop Navigation with increased spacing */}
+          <div className="hidden lg:flex items-center justify-center gap-6"> {/* Increased gap to 6 */}
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.dropdown ? (
                   <>
                     <button
-                      className={`px-4 py-2 text-base font-bold rounded-lg transition-all duration-300 inline-flex items-center gap-1
+                      className={`px-5 py-2.5 text-base font-bold rounded-lg transition-all duration-300 inline-flex items-center gap-1
                         ${activeItem.startsWith(item.href)
                           ? 'text-primary bg-primary/10' 
                           : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
@@ -113,7 +114,7 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className={`px-4 py-2 text-base font-bold rounded-lg transition-all duration-300 
+                    className={`px-5 py-2.5 text-base font-bold rounded-lg transition-all duration-300 
                       ${activeItem === item.href 
                         ? 'text-primary bg-primary/10' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
@@ -127,18 +128,18 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* CTA Buttons with increased spacing */}
+          <div className="hidden lg:flex items-center gap-4"> {/* Increased gap to 4 */}
             <Link
               href="/login"
-              className="px-4 py-2 text-base font-bold text-gray-700 hover:text-gray-900 
+              className="px-5 py-2.5 text-base font-bold text-gray-700 hover:text-gray-900 
                 transition-all duration-300 rounded-lg hover:bg-gray-50/50"
             >
               Sign In
             </Link>
             <Link
               href="/request-quote"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors duration-200"
             >
               <CurrencyDollarIcon className="w-4 h-4" />
               Get Quote
@@ -158,7 +159,7 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (no changes needed here) */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
