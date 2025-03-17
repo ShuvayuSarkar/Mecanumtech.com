@@ -1,15 +1,13 @@
-/** @type {import('next').NextConfig} */
+// next.config.mjs
+
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**', // Allow all external images (adjust for production)
-      },
-    ],
-    // If using local images:
-    domains: ['localhost'], // Add your domain in production
-  },
-};
+
+  reactStrictMode: true,
+
+  output: 'export',
+
+  images: { unoptimized: true }
+
+}
 
 export default nextConfig;
