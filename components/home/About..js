@@ -27,7 +27,7 @@ export default function About() {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="mb-16 text-center">
           <motion.h2 
