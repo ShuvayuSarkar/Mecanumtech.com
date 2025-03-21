@@ -25,6 +25,12 @@ export default function Header() {
       const sections = document.querySelectorAll('section[id]');
       const scrollPosition = window.scrollY + 100; // Offset for header height
       
+      // Check if we're at the top of the page (hero section)
+      if (window.scrollY < 100) { // Using a small threshold
+        setActiveItem('/'); // Set to home route when at the top
+        return;
+      }
+      
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
@@ -35,14 +41,14 @@ export default function Header() {
         }
       });
     };
-
+  
     // Initial check for hash in URL
     if (window.location.hash) {
       setActiveItem(`/${window.location.hash}`);
     } else {
       setActiveItem('/');
     }
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
