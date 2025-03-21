@@ -89,8 +89,8 @@ export default function Header() {
     <header 
       className={`fixed w-full z-50 transition-all duration-300 px-4 ${
         isScrolled 
-          ? 'mt-2' 
-          : 'mt-2'
+          ? 'mt-4' 
+          : 'mt-4'
       }`}
     >
       {/* Increased max-width to 1600px */}
