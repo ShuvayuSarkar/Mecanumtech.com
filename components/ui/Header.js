@@ -89,8 +89,8 @@ export default function Header() {
     <header 
       className={`fixed w-full z-50 transition-all duration-300 px-4 ${
         isScrolled 
-          ? 'mt-4' 
-          : 'mt-6'
+          ? 'mt-2' 
+          : 'mt-2'
       }`}
     >
       {/* Increased max-width to 1600px */}
@@ -142,14 +142,14 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Sign In Button Only */}
+          {/* Download Brochure Button Only */}
           <div className="hidden lg:flex items-center gap-4">
             <Link
-              href="/login"
+              href="/brochure"
               className="px-5 py-2 text-base font-bold text-gray-700 hover:text-gray-900 
                 transition-all duration-300 rounded-lg hover:bg-gray-50/50"
             >
-              Sign In
+              Download Brochure
             </Link>
           </div>
 
@@ -194,12 +194,12 @@ export default function Header() {
                 ))}
                 <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
                   <Link
-                    href="/login"
+                    href="/brochure"
                     className="px-4 py-2.5 text-base font-bold text-gray-700 hover:text-gray-900 
                       transition-all duration-300 rounded-lg hover:bg-gray-50/50 text-center"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Sign In
+                    Download Brochure
                   </Link>
                 </div>
               </div>
