@@ -86,6 +86,19 @@ export default function Header() {
     }
   };
 
+  // Function to handle PDF download
+  const handleDownloadBrochure = (e) => {
+    e.preventDefault();
+    
+    // Open the PDF in a new tab
+    window.open('/images/brochure.pdf', '_blank');
+    
+    // Close mobile menu if open
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 px-4 ${
@@ -150,15 +163,16 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Download Brochure Button Only */}
+          {/* Download Brochure Button - Updated with onClick handler */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="/brochure"
+            <a
+              href="/brochure.pdf"
+              onClick={handleDownloadBrochure}
               className="px-5 py-2 text-base font-bold text-gray-700 hover:text-gray-900 
-                transition-all duration-300 rounded-lg hover:bg-gray-50/50"
+                transition-all duration-300 rounded-lg hover:bg-gray-50/50 cursor-pointer"
             >
               Download Brochure
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -207,14 +221,15 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-                  <Link
-                    href="/brochure"
+                  {/* Mobile Download Brochure Button - Updated with onClick handler */}
+                  <a
+                    href="/brochure.pdf"
+                    onClick={handleDownloadBrochure}
                     className="px-4 py-2.5 text-base font-bold text-gray-700 hover:text-gray-900 
-                      transition-all duration-300 rounded-lg hover:bg-gray-50/50 text-center"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                      transition-all duration-300 rounded-lg hover:bg-gray-50/50 text-center cursor-pointer"
                   >
                     Download Brochure
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>
