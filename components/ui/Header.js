@@ -88,24 +88,29 @@ export default function Header() {
       }`}
     >
       {/* Increased max-width to 1600px */}
-      <div className={`max-w-[1600px] mx-auto rounded-xl transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-lg'
-          : 'bg-white/50 backdrop-blur-lg shadow-md'
-      }`}>
-        <nav className="flex items-center justify-between px-8 py-4"> {/* Increased horizontal padding */}
+      <div 
+        className={`max-w-[1600px] mx-auto rounded-xl transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/80 backdrop-blur-xl'
+            : 'bg-white/50 backdrop-blur-lg'
+        }`}
+        style={{
+          boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.06)'
+        }}
+      >
+        <nav className="flex items-center justify-between px-8 py-3"> {/* Reduced vertical padding from py-4 to py-3 */}
           {/* Logo section with adjusted size */}
           <div className="flex-shrink-0 relative z-10 ml-4"> {/* Reduced left margin */}
             <Link 
               href="/"
               onClick={(e) => scrollToSection(e, '/')}
-              className="block relative w-[180px] h-[65px]"
-            > {/* Increased logo size */}
+              className="block relative w-[160px] h-[55px]" /* Reduced height from 65px to 55px and width from 180px to 160px */
+            >
               <Image
                 src="/images/projects/logo.png"
                 alt="Logo"
                 fill
-                sizes="180px"
+                sizes="160px"
                 className="object-contain object-left"
                 priority
               />
@@ -119,7 +124,7 @@ export default function Header() {
                 <a
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
-                  className={`px-5 py-2.5 text-lg font-bold rounded-lg transition-all duration-300 
+                  className={`px-5 py-2 text-lg font-bold rounded-lg transition-all duration-300 
                     ${activeItem === item.href 
                       ? 'text-primary bg-primary/10' 
                       : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
@@ -135,7 +140,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               href="/login"
-              className="px-5 py-2.5 text-base font-bold text-gray-700 hover:text-gray-900 
+              className="px-5 py-2 text-base font-bold text-gray-700 hover:text-gray-900 
                 transition-all duration-300 rounded-lg hover:bg-gray-50/50"
             >
               Sign In

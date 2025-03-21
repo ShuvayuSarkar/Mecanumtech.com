@@ -3,9 +3,13 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
-import Globe from './Globe'; // Added import for the Globe component
+import Globe from './Globe';
+import { QuoteFormModal } from './QuoteFormModal'; // Import the form modal component
 
 export default function Hero() {
+  // State for controlling modal visibility
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   // Typewriter effect for energy types
   const TypewriterText = () => {
     // Move words outside the effect dependency with useMemo
@@ -66,15 +70,15 @@ export default function Hero() {
               Innovative lithium-based energy solutions that are clean, efficient, and sustainable.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setIsFormOpen(true)}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white
                 font-bold rounded-xl transition-all duration-300 hover:from-green-600 hover:to-emerald-700 hover:scale-[1.02]
                 shadow-sm hover:shadow-md text-lg"
               >
                 <CalendarIcon className="w-5 h-5" />
                 Get a Quote
-              </Link>
+              </button>
               <Link
                 href="/products"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-green-700
@@ -93,10 +97,16 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             className="h-[500px] relative"
           >
-            <Globe /> {/* Replaced the placeholder div with the Globe component */}
+            <Globe />
           </motion.div>
         </div>
       </div>
+
+      {/* Quote Form Modal */}
+      <QuoteFormModal 
+        isOpen={isFormOpen} 
+        onClose={() => setIsFormOpen(false)} 
+      />
     </section>
   );
 }

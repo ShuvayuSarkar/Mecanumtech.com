@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
@@ -33,6 +33,24 @@ export default function WarrantyForm() {
         receiptUploaded: false
     });
 
+    // Add effect to prevent navbar highlighting for this section
+    useEffect(() => {
+        const warrantySection = document.getElementById('warranty');
+        
+        if (warrantySection) {
+            const observer = new IntersectionObserver((entries) => {
+                // Do nothing when this section is intersecting
+                // This prevents automatic highlighting in the navbar
+            }, { threshold: 0.3 });
+            
+            observer.observe(warrantySection);
+            
+            return () => {
+                observer.unobserve(warrantySection);
+            };
+        }
+    }, []);
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData(prev => ({
@@ -56,7 +74,7 @@ export default function WarrantyForm() {
     ];
 
     return (
-        <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-100">
+        <section id="warranty" className="py-16 bg-gradient-to-br from-green-50 to-emerald-100">
             <div className="container mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

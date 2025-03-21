@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function ContactUs() {
   // Function to handle email click
@@ -8,6 +8,38 @@ export default function ContactUs() {
     // You can customize the email subject and body here
     window.location.href = 'mailto:info@mecanumtech.com?subject=Consultation Request&body=I would like to request a consultation for my energy requirements.';
   };
+
+  // Add intersection observer to handle highlighting in navbar
+  useEffect(() => {
+    const contactSection = document.getElementById('contact');
+    
+    if (contactSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // When contact section is visible
+          if (entry.isIntersecting) {
+            // Find and update the navbar links
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+              // Remove active class from all links
+              link.classList.remove('active', 'text-green-500');
+              
+              // Add active class to contact link
+              if (link.getAttribute('href') === '#contact') {
+                link.classList.add('active', 'text-green-500');
+              }
+            });
+          }
+        });
+      }, { threshold: 0.3 }); // Adjust threshold as needed
+      
+      observer.observe(contactSection);
+      
+      return () => {
+        observer.unobserve(contactSection);
+      };
+    }
+  }, []);
 
   return (
     <section id="contact" className="py-16 bg-gradient-to-r from-teal-500 to-cyan-700">
