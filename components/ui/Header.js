@@ -16,6 +16,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('/');
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,18 +124,25 @@ export default function Header() {
             </Link>
           </div>
           
-          {/* Desktop Navigation with increased spacing and INCREASED FONT SIZE */}
+          {/* Desktop Navigation with hover effects */}
           <div className="hidden lg:flex items-center justify-center gap-6"> {/* Increased gap to 6 */}
             {navItems.map((item) => (
-              <div key={item.name} className="relative group">
+              <div 
+                key={item.name} 
+                className="relative group"
+                onMouseEnter={() => setHoveredItem(item.name)}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
                 <a
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
                   className={`px-5 py-2 text-lg font-bold rounded-lg transition-all duration-300 
                     ${activeItem === item.href 
-                      ? 'text-primary bg-primary/10' 
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
-                    }`}
+                      ? 'text-green-600' 
+                      : 'text-gray-700'
+                    }
+                    ${hoveredItem === item.name ? 'bg-gray-200/70' : ''}
+                  `}
                 >
                   {item.name}
                 </a>
@@ -166,7 +174,7 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* Mobile Menu with INCREASED FONT SIZE */}
+        {/* Mobile Menu with hover effects */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -178,15 +186,21 @@ export default function Header() {
             >
               <div className="flex flex-col py-4 px-6 bg-white/50 backdrop-blur-lg rounded-b-xl">
                 {navItems.map((item) => (
-                  <div key={item.name}>
+                  <div 
+                    key={item.name}
+                    onMouseEnter={() => setHoveredItem(item.name)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
                     <a
                       href={item.href}
                       onClick={(e) => scrollToSection(e, item.href)}
                       className={`block px-4 py-3 text-lg font-bold rounded-lg transition-all duration-300
                         ${activeItem === item.href 
-                          ? 'text-primary bg-primary/10' 
-                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50'
-                        }`}
+                          ? 'text-green-600' 
+                          : 'text-gray-700'
+                        }
+                        ${hoveredItem === item.name ? 'bg-gray-200/70' : ''}
+                      `}
                     >
                       {item.name}
                     </a>
