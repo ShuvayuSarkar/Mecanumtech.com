@@ -2,7 +2,7 @@ import React from 'react';
 
 const MecanumFooter = () => {
   return (
-    <div className="w-full">
+    <div className="w-full font-inter">
       {/* Main Footer Section - Lighter Teal */}
       <div className="bg-teal-800 text-white p-8">
         <div className="container mx-auto flex flex-col md:flex-row justify-between max-w-6xl">

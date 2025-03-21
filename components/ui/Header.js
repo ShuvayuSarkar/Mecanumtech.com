@@ -7,7 +7,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const navItems = [
   { name: 'About Us', href: '/#about' },
-  //{ name: 'Services', href: '/#services' },
   { name: 'Our Products', href: '/#projects' },
   { name: 'Contact Us', href: '/#contact' },
 ];
@@ -22,13 +21,11 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
       const sections = document.querySelectorAll('section[id]');
-      const scrollPosition = window.scrollY + 100; // Offset for header height
+      const scrollPosition = window.scrollY + 100;
       
-      // Check if we're at the top of the page (hero section)
-      if (window.scrollY < 100) { // Using a small threshold
-        setActiveItem('/'); // Set to home route when at the top
+      if (window.scrollY < 100) {
+        setActiveItem('/');
         return;
       }
       
@@ -43,7 +40,6 @@ export default function Header() {
       });
     };
   
-    // Initial check for hash in URL
     if (window.location.hash) {
       setActiveItem(`/${window.location.hash}`);
     } else {
@@ -54,46 +50,32 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Function to handle smooth scrolling
   const scrollToSection = (e, href) => {
     e.preventDefault();
     
-    // Extract the section ID from the href
     const sectionId = href.split('#')[1];
     
     if (sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
-        // Smooth scroll to the element
         element.scrollIntoView({ behavior: 'smooth' });
-        
-        // Update URL without causing page reload
         history.pushState({}, '', `/#${sectionId}`);
-        
-        // Update active item
         setActiveItem(`/#${sectionId}`);
       }
     } else {
-      // If no section ID (home), scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
       history.pushState({}, '', '/');
       setActiveItem('/');
     }
     
-    // Close mobile menu if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
   };
 
-  // Function to handle PDF download
   const handleDownloadBrochure = (e) => {
     e.preventDefault();
-    
-    // Open the PDF in a new tab
     window.open('/images/brochure.pdf', '_blank');
-    
-    // Close mobile menu if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
@@ -101,13 +83,12 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 px-4 ${
+      className={`fixed w-full z-50 transition-all duration-300 px-4 font-inter ${
         isScrolled 
           ? 'mt-4' 
           : 'mt-4'
       }`}
     >
-      {/* Increased max-width to 1600px */}
       <div 
         className={`max-w-[1600px] mx-auto rounded-xl transition-all duration-300 ${
           isScrolled
@@ -118,13 +99,12 @@ export default function Header() {
           boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.06)'
         }}
       >
-        <nav className="flex items-center justify-between px-8 py-3"> {/* Reduced vertical padding from py-4 to py-3 */}
-          {/* Logo section with adjusted size */}
-          <div className="flex-shrink-0 relative z-10 ml-4"> {/* Reduced left margin */}
+        <nav className="flex items-center justify-between px-8 py-3">
+          <div className="flex-shrink-0 relative z-10 ml-4">
             <Link 
               href="/"
               onClick={(e) => scrollToSection(e, '/')}
-              className="block relative w-[160px] h-[55px]" /* Reduced height from 65px to 55px and width from 180px to 160px */
+              className="block relative w-[160px] h-[55px]"
             >
               <Image
                 src="/images/projects/logo.png"
@@ -136,9 +116,8 @@ export default function Header() {
               />
             </Link>
           </div>
-          
-          {/* Desktop Navigation with hover effects */}
-          <div className="hidden lg:flex items-center justify-center gap-6"> {/* Increased gap to 6 */}
+
+          <div className="hidden lg:flex items-center justify-center gap-6">
             {navItems.map((item) => (
               <div 
                 key={item.name} 
@@ -163,7 +142,6 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Download Brochure Button - Updated with onClick handler */}
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="/brochure.pdf"
@@ -175,7 +153,6 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
@@ -188,7 +165,6 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* Mobile Menu with hover effects */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -221,7 +197,6 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-                  {/* Mobile Download Brochure Button - Updated with onClick handler */}
                   <a
                     href="/brochure.pdf"
                     onClick={handleDownloadBrochure}

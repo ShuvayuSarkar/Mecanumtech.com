@@ -33,15 +33,11 @@ export default function WarrantyForm() {
         receiptUploaded: false
     });
 
-    // Add effect to prevent navbar highlighting for this section
     useEffect(() => {
         const warrantySection = document.getElementById('warranty');
         
         if (warrantySection) {
-            const observer = new IntersectionObserver((entries) => {
-                // Do nothing when this section is intersecting
-                // This prevents automatic highlighting in the navbar
-            }, { threshold: 0.3 });
+            const observer = new IntersectionObserver((entries) => {}, { threshold: 0.3 });
             
             observer.observe(warrantySection);
             
@@ -62,7 +58,6 @@ export default function WarrantyForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log({ ...formData, purchaseDate });
-        // Here you would typically send the data to your backend
         alert('Warranty claim submitted!');
     };
 
@@ -74,7 +69,7 @@ export default function WarrantyForm() {
     ];
 
     return (
-        <section id="warranty" className="py-16 bg-gradient-to-br from-green-50 to-emerald-100">
+        <section id="warranty" className="py-16 bg-gradient-to-br from-green-50 to-emerald-100 font-inter">
             <div className="container mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -89,7 +84,7 @@ export default function WarrantyForm() {
                     </div>
 
                     <div className="bg-white rounded-xl shadow-lg p-8 border border-emerald-200">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} className="font-inter">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="block text-sm font-medium text-emerald-700">
@@ -102,7 +97,7 @@ export default function WarrantyForm() {
                                         onChange={handleChange}
                                         placeholder="Enter your full name"
                                         required
-                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500"
+                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500 font-inter"
                                     />
                                 </div>
 
@@ -118,7 +113,7 @@ export default function WarrantyForm() {
                                         onChange={handleChange}
                                         placeholder="Enter your email"
                                         required
-                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500"
+                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500 font-inter"
                                     />
                                 </div>
 
@@ -130,12 +125,12 @@ export default function WarrantyForm() {
                                         value={formData.productModel}
                                         onValueChange={(value) => setFormData(prev => ({ ...prev, productModel: value }))}
                                     >
-                                        <SelectTrigger className="border-emerald-300 focus:ring-green-500 focus:border-green-500">
+                                        <SelectTrigger className="border-emerald-300 focus:ring-green-500 focus:border-green-500 font-inter">
                                             <SelectValue placeholder="Select product model" />
                                         </SelectTrigger>
                                         <SelectContent className="bg-white border-emerald-200">
                                             {productOptions.map((option) => (
-                                                <SelectItem key={option.value} value={option.value}>
+                                                <SelectItem key={option.value} value={option.value} className="font-inter">
                                                     {option.label}
                                                 </SelectItem>
                                             ))}
@@ -154,7 +149,7 @@ export default function WarrantyForm() {
                                         onChange={handleChange}
                                         placeholder="Enter product serial number"
                                         required
-                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500"
+                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500 font-inter"
                                     />
                                 </div>
 
@@ -166,7 +161,7 @@ export default function WarrantyForm() {
                                         <PopoverTrigger asChild>
                                             <Button
                                                 variant="outline"
-                                                className="w-full justify-start text-left font-normal flex items-center border-emerald-300 text-emerald-700 hover:bg-emerald-50"
+                                                className="w-full justify-start text-left font-normal flex items-center border-emerald-300 text-emerald-700 hover:bg-emerald-50 font-inter"
                                             >
                                                 <CalendarIcon className="mr-2 h-4 w-4" />
                                                 {purchaseDate ? format(purchaseDate, 'PPP') : <span>Select date</span>}
@@ -178,7 +173,7 @@ export default function WarrantyForm() {
                                                 selected={purchaseDate}
                                                 onSelect={setPurchaseDate}
                                                 initialFocus
-                                                className="text-emerald-800"
+                                                className="text-emerald-800 font-inter"
                                             />
                                         </PopoverContent>
                                     </Popover>
@@ -196,7 +191,7 @@ export default function WarrantyForm() {
                                         placeholder="Describe the issue you're experiencing"
                                         rows={4}
                                         required
-                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500"
+                                        className="border-emerald-300 focus:ring-green-500 focus:border-green-500 font-inter"
                                     />
                                 </div>
 
@@ -210,14 +205,14 @@ export default function WarrantyForm() {
                                     />
                                     <label
                                         htmlFor="receiptUploaded"
-                                        className="text-sm font-medium text-emerald-700"
+                                        className="text-sm font-medium text-emerald-700 font-inter"
                                     >
                                         I have uploaded a copy of my receipt
                                     </label>
                                 </div>
 
                                 <div className="md:col-span-2 mt-4">
-                                    <Button type="submit" className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white">
+                                    <Button type="submit" className="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white font-inter">
                                         Submit Warranty Claim
                                     </Button>
                                 </div>

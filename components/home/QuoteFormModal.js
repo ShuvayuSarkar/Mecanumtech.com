@@ -62,40 +62,35 @@ export function QuoteFormModal({ isOpen, onClose }) {
 
   // Form submission handler
   function onSubmit(values) {
-    // Here you would typically send the form data to your backend
     console.log(values);
-    
-    // Show success message or perform additional actions
     alert("Thank you for your interest! We'll get back to you shortly.");
-    
-    // Reset form and close modal
     form.reset();
     onClose();
   }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] font-inter">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-green-800">Request a Quote</DialogTitle>
-          <DialogDescription className="text-green-700">
+          <DialogTitle className="text-2xl font-bold text-green-800 font-inter">Request a Quote</DialogTitle>
+          <DialogDescription className="text-green-700 font-inter">
             Fill out the form below and our team will get back to you with a personalized quote.
           </DialogDescription>
         </DialogHeader>
         
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-inter">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel className="font-inter">Full Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="John Doe" {...field} />
+                      <Input placeholder="John Doe" {...field} className="font-inter" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="font-inter" />
                   </FormItem>
                 )}
               />
@@ -105,11 +100,11 @@ export function QuoteFormModal({ isOpen, onClose }) {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="font-inter">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="email@example.com" type="email" {...field} />
+                      <Input placeholder="email@example.com" type="email" {...field} className="font-inter" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="font-inter" />
                   </FormItem>
                 )}
               />
@@ -121,11 +116,11 @@ export function QuoteFormModal({ isOpen, onClose }) {
                 name="company"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Company</FormLabel>
+                    <FormLabel className="font-inter">Company</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your Company" {...field} />
+                      <Input placeholder="Your Company" {...field} className="font-inter" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="font-inter" />
                   </FormItem>
                 )}
               />
@@ -135,11 +130,11 @@ export function QuoteFormModal({ isOpen, onClose }) {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormLabel className="font-inter">Phone (Optional)</FormLabel>
                     <FormControl>
-                      <Input placeholder="+1 (555) 000-0000" type="tel" {...field} />
+                      <Input placeholder="+1 (555) 000-0000" type="tel" {...field} className="font-inter" />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="font-inter" />
                   </FormItem>
                 )}
               />
@@ -150,14 +145,14 @@ export function QuoteFormModal({ isOpen, onClose }) {
               name="productInterest"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Product Interest</FormLabel>
+                  <FormLabel className="font-inter">Product Interest</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="font-inter">
                         <SelectValue placeholder="Select product category" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="font-inter">
                       <SelectItem value="lithium-batteries">Lithium Batteries</SelectItem>
                       <SelectItem value="energy-storage">Energy Storage Solutions</SelectItem>
                       <SelectItem value="sustainable-fuel">Sustainable Fuel</SelectItem>
@@ -165,7 +160,7 @@ export function QuoteFormModal({ isOpen, onClose }) {
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="font-inter" />
                 </FormItem>
               )}
             />
@@ -175,36 +170,27 @@ export function QuoteFormModal({ isOpen, onClose }) {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message</FormLabel>
+                  <FormLabel className="font-inter">Message</FormLabel>
                   <FormControl>
                     <Textarea 
                       placeholder="Tell us about your project and requirements..." 
-                      className="min-h-[100px]"
+                      className="min-h-[100px] font-inter"
                       {...field} 
                     />
                   </FormControl>
-                  <FormDescription>
+                  <FormDescription className="font-inter">
                     Please provide details about your needs so we can prepare an accurate quote.
                   </FormDescription>
-                  <FormMessage />
+                  <FormMessage className="font-inter" />
                 </FormItem>
               )}
             />
             
             <DialogFooter className="flex flex-col sm:flex-row gap-3 sm:justify-end pt-4">
-              <Button 
-                type="button" 
-                variant="outline" 
-                onClick={onClose}
-                className="border-green-300 text-green-700 hover:bg-green-50 hover:text-green-800"
-              >
+              <Button type="button" variant="outline" onClick={onClose} className="border-green-300 text-green-700 hover:bg-green-50 hover:text-green-800 font-inter">
                 Cancel
               </Button>
-              <Button 
-                type="submit"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white
-                  hover:from-green-600 hover:to-emerald-700"
-              >
+              <Button type="submit" className="bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 font-inter">
                 Submit Request
               </Button>
             </DialogFooter>

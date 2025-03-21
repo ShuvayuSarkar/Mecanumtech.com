@@ -33,7 +33,7 @@ export default function About() {
           <motion.h2 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-4xl font-bold text-green-800"
+            className="text-3xl md:text-4xl font-bold text-green-800 font-inter"
           >
             About Mecanum Energitech
           </motion.h2>
@@ -69,7 +69,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             className="text-left"
           >
-            <p className="text-lg text-green-700 mb-8">
+            <p className="text-lg text-green-700 mb-8 font-inter">
               We are a leading manufacturer and supplier of cutting-edge lithium-based energy solutions, committed to driving the transition to clean, sustainable energy systems worldwide.
             </p>
 
@@ -85,8 +85,8 @@ export default function About() {
                   <LeafIcon className="w-6 h-6 text-emerald-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-green-800 mb-2">Eco-Friendly Solutions</h3>
-                  <p className="text-green-700">
+                  <h3 className="text-xl font-bold text-green-800 mb-2 font-inter">Eco-Friendly Solutions</h3>
+                  <p className="text-green-700 font-inter">
                     Our products are designed with environmental sustainability at their core, reducing carbon footprints and promoting renewable energy adoption.
                   </p>
                 </div>
@@ -98,8 +98,8 @@ export default function About() {
                   <CogIcon className="w-6 h-6 text-emerald-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-green-800 mb-2">Advanced Technology</h3>
-                  <p className="text-green-700">
+                  <h3 className="text-xl font-bold text-green-800 mb-2 font-inter">Advanced Technology</h3>
+                  <p className="text-green-700 font-inter">
                     We leverage the latest advancements in battery technology to provide solutions that are efficient, reliable, and built to last.
                   </p>
                 </div>
@@ -111,8 +111,8 @@ export default function About() {
                   <ShieldCheckIcon className="w-6 h-6 text-emerald-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-green-800 mb-2">Quality Assurance</h3>
-                  <p className="text-green-700">
+                  <h3 className="text-xl font-bold text-green-800 mb-2 font-inter">Quality Assurance</h3>
+                  <p className="text-green-700 font-inter">
                     Every product undergoes rigorous testing and quality control to ensure it meets international standards and exceeds customer expectations.
                   </p>
                 </div>
@@ -129,7 +129,7 @@ export default function About() {
                 href="/story"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white
                 font-bold rounded-xl transition-all duration-300 hover:from-green-600 hover:to-emerald-700 hover:scale-[1.02]
-                shadow-sm hover:shadow-md text-lg"
+                shadow-sm hover:shadow-md text-lg font-inter"
               >
                 Discover Our Story
               </Link>
