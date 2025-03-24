@@ -83,7 +83,7 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 px-4 font-inter ${
+      className={`fixed w-full z-50 transition-all duration-300 px-4 font-sans ${
         isScrolled 
           ? 'mt-4' 
           : 'mt-4'

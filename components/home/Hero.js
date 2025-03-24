@@ -11,7 +11,7 @@ export default function Hero() {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-green-50 to-green-100">
+    <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-tr from-green-100 via-green-500 via-teal-600 to-white">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left Column - Text Content */}
@@ -20,13 +20,13 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             className="text-left"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 leading-tight mb-6 font-inter">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 font-sans">
               Powering The Future With{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-emerald-300">
                 Green Energy
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-green-700 mb-8 font-inter">
+            <p className="text-lg md:text-xl text-white mb-8 font-sans">
               Innovative lithium-based energy solutions that are clean, efficient, and sustainable.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -34,7 +34,7 @@ export default function Hero() {
                 onClick={() => setIsFormOpen(true)}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white
                 font-bold rounded-xl transition-all duration-300 hover:from-green-600 hover:to-emerald-700 hover:scale-[1.02]
-                shadow-sm hover:shadow-md text-lg font-inter"
+                shadow-sm hover:shadow-md text-lg font-sans"
               >
                 <CalendarIcon className="w-5 h-5" />
                 Get a Quote
@@ -43,7 +43,7 @@ export default function Hero() {
                 href="/products"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-green-700
                 font-bold rounded-xl transition-all duration-300 hover:bg-green-50 border-2 border-green-200
-                hover:border-green-500 hover:text-emerald-600 text-lg font-inter"
+                hover:border-green-500 hover:text-emerald-600 text-lg font-sans"
               >
                 Explore Products
                 <ArrowTopRightOnSquareIcon className="w-5 h-5" />

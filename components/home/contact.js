@@ -47,7 +47,7 @@ export default function ContactUs() {
         <motion.h2 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-4xl font-bold text-white mb-6 font-inter"
+          className="text-3xl md:text-4xl font-bold text-white mb-6 font-sans"
         >
           Ready to Power Your Business with Clean Energy?
         </motion.h2>
@@ -56,7 +56,7 @@ export default function ContactUs() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-white text-lg mb-10 max-w-2xl mx-auto font-inter"
+          className="text-white text-lg mb-10 max-w-2xl mx-auto font-sans"
         >
           Contact our experts today for a customized solution that fits your
           specific energy requirements.
@@ -70,7 +70,7 @@ export default function ContactUs() {
           <button
             onClick={handleConsultationRequest}
             className="px-8 py-4 bg-white text-teal-600 font-medium rounded-full hover:bg-gray-100 
-            transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-inter"
+            transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-sans"
           >
             Request a Consultation
           </button>
