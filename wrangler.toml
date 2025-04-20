@@ -1,0 +1,5 @@
+name = "mecanumtech"
+type = "website"
+
+[site]
+bucket = "./out"  # Output directory from Next.js build

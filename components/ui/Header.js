@@ -129,10 +129,7 @@ export default function Header() {
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
                   className={`px-5 py-2 text-lg font-bold rounded-lg transition-all duration-300 
-                    ${activeItem === item.href 
-                      ? 'text-green-600' 
-                      : 'text-gray-700'
-                    }
+                    text-blue-900
                     ${hoveredItem === item.name ? 'bg-gray-200/70' : ''}
                   `}
                 >
@@ -185,10 +182,7 @@ export default function Header() {
                       href={item.href}
                       onClick={(e) => scrollToSection(e, item.href)}
                       className={`block px-4 py-3 text-lg font-bold rounded-lg transition-all duration-300
-                        ${activeItem === item.href 
-                          ? 'text-green-600' 
-                          : 'text-gray-700'
-                        }
+                        text-blue-900
                         ${hoveredItem === item.name ? 'bg-gray-200/70' : ''}
                       `}
                     >

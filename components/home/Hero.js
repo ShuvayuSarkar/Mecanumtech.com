@@ -1,17 +1,13 @@
-'use client';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
-import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
-import { QuoteFormModal } from './QuoteFormModal';
+"use client";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 
 export default function Hero() {
   // State for controlling modal visibility
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const World = dynamic(() => import("../ui/globe").then((m) => m.World), {
-  ssr: false,
+    ssr: false,
   });
   
   const globeConfig = {
@@ -32,433 +28,229 @@ export default function Hero() {
     arcLength: 0.9,
     rings: 1,
     maxRings: 3,
-    initialPosition: { lat: 22.3193, lng: 114.1694 },
+    initialPosition: { lat: 20.5937, lng: 78.9629 }, // Center on India
     autoRotate: true,
     autoRotateSpeed: 0.5,
   };
+  
   const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
-  const sampleArcs = [
-    {
-      order: 1,
-      startLat: -19.885592,
-      startLng: -43.951191,
-      endLat: -22.9068,
-      endLng: -43.1729,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 1,
-      startLat: 28.6139,
-      startLng: 77.209,
-      endLat: 3.139,
-      endLng: 101.6869,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 1,
-      startLat: -19.885592,
-      startLng: -43.951191,
-      endLat: -1.303396,
-      endLng: 36.852443,
-      arcAlt: 0.5,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 2,
-      startLat: 1.3521,
-      startLng: 103.8198,
-      endLat: 35.6762,
-      endLng: 139.6503,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 2,
-      startLat: 51.5072,
-      startLng: -0.1276,
-      endLat: 3.139,
-      endLng: 101.6869,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 2,
-      startLat: -15.785493,
-      startLng: -47.909029,
-      endLat: 36.162809,
-      endLng: -115.119411,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 3,
-      startLat: -33.8688,
-      startLng: 151.2093,
-      endLat: 22.3193,
-      endLng: 114.1694,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 3,
-      startLat: 21.3099,
-      startLng: -157.8581,
-      endLat: 40.7128,
-      endLng: -74.006,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 3,
-      startLat: -6.2088,
-      startLng: 106.8456,
-      endLat: 51.5072,
-      endLng: -0.1276,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 4,
-      startLat: 11.986597,
-      startLng: 8.571831,
-      endLat: -15.595412,
-      endLng: -56.05918,
-      arcAlt: 0.5,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 4,
-      startLat: -34.6037,
-      startLng: -58.3816,
-      endLat: 22.3193,
-      endLng: 114.1694,
-      arcAlt: 0.7,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 4,
-      startLat: 51.5072,
-      startLng: -0.1276,
-      endLat: 48.8566,
-      endLng: -2.3522,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 5,
-      startLat: 14.5995,
-      startLng: 120.9842,
-      endLat: 51.5072,
-      endLng: -0.1276,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 5,
-      startLat: 1.3521,
-      startLng: 103.8198,
-      endLat: -33.8688,
-      endLng: 151.2093,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 5,
-      startLat: 34.0522,
-      startLng: -118.2437,
-      endLat: 48.8566,
-      endLng: -2.3522,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 6,
-      startLat: -15.432563,
-      startLng: 28.315853,
-      endLat: 1.094136,
-      endLng: -63.34546,
-      arcAlt: 0.7,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 6,
-      startLat: 37.5665,
-      startLng: 126.978,
-      endLat: 35.6762,
-      endLng: 139.6503,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 6,
-      startLat: 22.3193,
-      startLng: 114.1694,
-      endLat: 51.5072,
-      endLng: -0.1276,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 7,
-      startLat: -19.885592,
-      startLng: -43.951191,
-      endLat: -15.595412,
-      endLng: -56.05918,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 7,
-      startLat: 48.8566,
-      startLng: -2.3522,
-      endLat: 52.52,
-      endLng: 13.405,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 7,
-      startLat: 52.52,
-      startLng: 13.405,
-      endLat: 34.0522,
-      endLng: -118.2437,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 8,
-      startLat: -8.833221,
-      startLng: 13.264837,
-      endLat: -33.936138,
-      endLng: 18.436529,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 8,
-      startLat: 49.2827,
-      startLng: -123.1207,
-      endLat: 52.3676,
-      endLng: 4.9041,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 8,
-      startLat: 1.3521,
-      startLng: 103.8198,
-      endLat: 40.7128,
-      endLng: -74.006,
-      arcAlt: 0.5,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 9,
-      startLat: 51.5072,
-      startLng: -0.1276,
-      endLat: 34.0522,
-      endLng: -118.2437,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 9,
-      startLat: 22.3193,
-      startLng: 114.1694,
-      endLat: -22.9068,
-      endLng: -43.1729,
-      arcAlt: 0.7,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 9,
-      startLat: 1.3521,
-      startLng: 103.8198,
-      endLat: -34.6037,
-      endLng: -58.3816,
-      arcAlt: 0.5,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 10,
-      startLat: -22.9068,
-      startLng: -43.1729,
-      endLat: 28.6139,
-      endLng: 77.209,
-      arcAlt: 0.7,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 10,
-      startLat: 34.0522,
-      startLng: -118.2437,
-      endLat: 31.2304,
-      endLng: 121.4737,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 10,
-      startLat: -6.2088,
-      startLng: 106.8456,
-      endLat: 52.3676,
-      endLng: 4.9041,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 11,
-      startLat: 41.9028,
-      startLng: 12.4964,
-      endLat: 34.0522,
-      endLng: -118.2437,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 11,
-      startLat: -6.2088,
-      startLng: 106.8456,
-      endLat: 31.2304,
-      endLng: 121.4737,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 11,
-      startLat: 22.3193,
-      startLng: 114.1694,
-      endLat: 1.3521,
-      endLng: 103.8198,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 12,
-      startLat: 34.0522,
-      startLng: -118.2437,
-      endLat: 37.7749,
-      endLng: -122.4194,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 12,
-      startLat: 35.6762,
-      startLng: 139.6503,
-      endLat: 22.3193,
-      endLng: 114.1694,
-      arcAlt: 0.2,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 12,
-      startLat: 22.3193,
-      startLng: 114.1694,
-      endLat: 34.0522,
-      endLng: -118.2437,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 13,
-      startLat: 52.52,
-      startLng: 13.405,
-      endLat: 22.3193,
-      endLng: 114.1694,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 13,
-      startLat: 11.986597,
-      startLng: 8.571831,
-      endLat: 35.6762,
-      endLng: 139.6503,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 13,
-      startLat: -22.9068,
-      startLng: -43.1729,
-      endLat: -34.6037,
-      endLng: -58.3816,
-      arcAlt: 0.1,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
-    {
-      order: 14,
-      startLat: -33.936138,
-      startLng: 18.436529,
-      endLat: 21.395643,
-      endLng: 39.883798,
-      arcAlt: 0.3,
-      color: colors[Math.floor(Math.random() * (colors.length - 1))],
-    },
+  
+  // Define major Indian cities with their coordinates
+  const indianCities = [
+    { name: "Delhi", lat: 28.6139, lng: 77.2090 },
+    { name: "Mumbai", lat: 19.0760, lng: 72.8777 },
+    { name: "Kolkata", lat: 22.5726, lng: 88.3639 },
+    { name: "Chennai", lat: 13.0827, lng: 80.2707 },
+    { name: "Bangalore", lat: 12.9716, lng: 77.5946 },
+    { name: "Hyderabad", lat: 17.3850, lng: 78.4867 },
+    { name: "Ahmedabad", lat: 23.0225, lng: 72.5714 },
+    { name: "Pune", lat: 18.5204, lng: 73.8567 },
+    { name: "Jaipur", lat: 26.9124, lng: 75.7873 },
+    { name: "Lucknow", lat: 26.8467, lng: 80.9462 },
+    { name: "Surat", lat: 21.1702, lng: 72.8311 },
+    { name: "Kochi", lat: 9.9312, lng: 76.2673 },
+    { name: "Goa", lat: 15.2993, lng: 74.1240 },
   ];
+  
+  // Global destinations
+  const globalDestinations = [
+    { name: "New York", lat: 40.7128, lng: -74.0060 },
+    { name: "London", lat: 51.5074, lng: -0.1278 },
+    { name: "Tokyo", lat: 35.6762, lng: 139.6503 },
+    { name: "Sydney", lat: -33.8688, lng: 151.2093 },
+    { name: "Rio de Janeiro", lat: -22.9068, lng: -43.1729 },
+    { name: "Cape Town", lat: -33.9249, lng: 18.4241 },
+    { name: "Moscow", lat: 55.7558, lng: 37.6173 },
+    { name: "Paris", lat: 48.8566, lng: 2.3522 },
+    { name: "Berlin", lat: 52.5200, lng: 13.4050 },
+    { name: "Dubai", lat: 25.2048, lng: 55.2708 },
+    { name: "Singapore", lat: 1.3521, lng: 103.8198 },
+    { name: "Hong Kong", lat: 22.3193, lng: 114.1694 },
+    { name: "Los Angeles", lat: 34.0522, lng: -118.2437 },
+    { name: "Toronto", lat: 43.6532, lng: -79.3832 },
+    { name: "São Paulo", lat: -23.5505, lng: -46.6333 },
+    { name: "Mexico City", lat: 19.4326, lng: -99.1332 },
+    { name: "Shanghai", lat: 31.2304, lng: 121.4737 },
+    { name: "Nairobi", lat: -1.2921, lng: 36.8219 },
+    { name: "Istanbul", lat: 41.0082, lng: 28.9784 },
+    { name: "Bangkok", lat: 13.7563, lng: 100.5018 },
+    { name: "Cairo", lat: 30.0444, lng: 31.2357 },
+    { name: "Buenos Aires", lat: -34.6037, lng: -58.3816 },
+    { name: "Johannesburg", lat: -26.2041, lng: 28.0473 },
+    { name: "Stockholm", lat: 59.3293, lng: 18.0686 },
+    { name: "Seoul", lat: 37.5665, lng: 126.9780 },
+    { name: "Manila", lat: 14.5995, lng: 120.9842 },
+    { name: "Amsterdam", lat: 52.3676, lng: 4.9041 },
+    { name: "Rome", lat: 41.9028, lng: 12.4964 },
+    { name: "Barcelona", lat: 41.3851, lng: 2.1734 },
+    { name: "Zurich", lat: 47.3769, lng: 8.5417 },
+    { name: "San Francisco", lat: 37.7749, lng: -122.4194 },
+    { name: "Vancouver", lat: 49.2827, lng: -123.1207 },
+    { name: "Vienna", lat: 48.2082, lng: 16.3738 },
+    { name: "Auckland", lat: -36.8485, lng: 174.7633 },
+    { name: "Kuala Lumpur", lat: 3.1390, lng: 101.6869 },
+    { name: "Jakarta", lat: -6.2088, lng: 106.8456 },
+    { name: "Lima", lat: -12.0464, lng: -77.0428 },
+    { name: "Helsinki", lat: 60.1699, lng: 24.9384 },
+    { name: "Santiago", lat: -33.4489, lng: -70.6693 },
+    { name: "Athens", lat: 37.9838, lng: 23.7275 },
+  ];
+  
+  // Generate arcs - all originating from Indian cities
+  const sampleArcs = [];
+  
+  // Helper function to get random item from array
+  const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
+  const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+  
+  // Create arcs for each order group (1-14 as in original)
+  for (let order = 1; order <= 14; order++) {
+    // Create 3 arcs per order group
+    for (let i = 0; i < 3; i++) {
+      const sourceCity = getRandomItem(indianCities);
+      const destCity = getRandomItem(globalDestinations);
+      
+      sampleArcs.push({
+        order: order,
+        startLat: sourceCity.lat,
+        startLng: sourceCity.lng,
+        endLat: destCity.lat,
+        endLng: destCity.lng,
+        arcAlt: Math.random() * 0.6 + 0.1, // Random altitude between 0.1 and 0.7
+        color: getRandomColor(),
+      });
+    }
+  }
+  
+  // Add connections between Indian cities (keeping lower altitude for these)
+  for (let i = 0; i < indianCities.length - 1; i++) {
+    const order = Math.floor(Math.random() * 14) + 1; // Random order between 1-14
+    
+    sampleArcs.push({
+      order: order,
+      startLat: indianCities[i].lat,
+      startLng: indianCities[i].lng,
+      endLat: indianCities[i + 1].lat,
+      endLng: indianCities[i + 1].lng,
+      arcAlt: 0.1, // Lower altitude for domestic connections
+      color: getRandomColor(),
+    });
+  }
+  
+  // Connect the major Indian cities to multiple global destinations
+  indianCities.slice(0, 5).forEach((city, idx) => {
+    for (let i = 0; i < 3; i++) {
+      const destIdx = (idx * 3 + i) % globalDestinations.length;
+      const destCity = globalDestinations[destIdx];
+      const order = Math.floor(Math.random() * 7) + 8; // Orders 8-14
+      
+      sampleArcs.push({
+        order: order,
+        startLat: city.lat,
+        startLng: city.lng,
+        endLat: destCity.lat,
+        endLng: destCity.lng,
+        arcAlt: 0.3 + (idx * 0.1), // Varying altitudes
+        color: getRandomColor(),
+      });
+    }
+  });
 
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-tr from-green-100 via-green-500 via-teal-600 to-white">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left Column - Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-left"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 font-sans">
-              Powering The Future With{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-emerald-300">
-                Green Energy
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white mb-8 font-sans">
-              Innovative lithium-based energy solutions that are clean, efficient, and sustainable.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button
-                onClick={() => setIsFormOpen(true)}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white
-                font-bold rounded-xl transition-all duration-300 hover:from-green-600 hover:to-emerald-700 hover:scale-[1.02]
-                shadow-sm hover:shadow-md text-lg font-sans"
-              >
-                <CalendarIcon className="w-5 h-5" />
-                Get a Quote
-              </button>
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-green-700
-                font-bold rounded-xl transition-all duration-300 hover:bg-green-50 border-2 border-green-200
-                hover:border-green-500 hover:text-emerald-600 text-lg font-sans"
-              >
-                Explore Products
-                <ArrowTopRightOnSquareIcon className="w-5 h-5" />
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Right Column - Space for Globe */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="h-[500px] relative"
-          >
-                    <div className="absolute w-full -bottom-20 h-72 md:h-full z-10">
-          <World data={sampleArcs} globeConfig={globeConfig} />
+    <section className="relative w-full h-screen overflow-hidden bg-slate-900">
+      {/* Navigation Bar */}
+      <nav className="absolute top-0 w-full z-20 px-6 py-4">
+        <div className="flex justify-between items-center">
+          <div className="text-white font-bold text-xl">
+            {/* Company logo or name could go here instead */}
+          </div>
+          <div className="space-x-6 text-sm">
+            {/* Navigation links removed */}
+          </div>
         </div>
-          </motion.div>
+      </nav>
+      
+      {/* Main Content - Split Layout */}
+      <div className="flex flex-col lg:flex-row h-full">
+        {/* Left Side - Text Content */}
+        <div className="relative z-10 flex flex-col justify-center w-full lg:w-1/2 px-8 md:px-16 py-12">
+          <div className="text-green-400 mb-8 text-base font-medium">The Future of Energy storage</div>
+          <h1 className="text-5xl sm:text-6xl font-bold text-white mb-10">
+            Powering The Future With <span className="block">Clean Energy</span>
+          </h1>
+          <p className="text-blue-100 mb-12 max-w-lg text-lg">
+            Innovative lithium based-based ennergy solutions that are clean, effecient, and sustainable.
+          </p>
+          <div className="mt-5">
+            <button
+              onClick={() => setIsFormOpen(true)}
+              className="px-8 py-3 text-white bg-green-500 rounded-full hover:bg-green-600 transition-colors"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+        
+        {/* Right Side - Globe Visualization */}
+        <div className="relative w-full lg:w-1/2 h-full">
+          <div className="absolute inset-0 z-0">
+            <World
+              globeConfig={globeConfig}
+              data={sampleArcs}
+            />
+          </div>
         </div>
       </div>
-
-      {/* Quote Form Modal */}
-      <QuoteFormModal 
-        isOpen={isFormOpen} 
-        onClose={() => setIsFormOpen(false)} 
-      />
+      
+      {/* Modal Form */}
+      {isFormOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded-lg w-full max-w-md">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Contact Us</h2>
+            <form className="space-y-4">
+              <div>
+                <label className="block text-gray-700 mb-1">Name</label>
+                <input 
+                  type="text" 
+                  className="w-full px-4 py-2 border rounded-md text-gray-800"
+                  placeholder="Your Name" 
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-1">Email</label>
+                <input 
+                  type="email" 
+                  className="w-full px-4 py-2 border rounded-md text-gray-800"
+                  placeholder="your@email.com" 
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-1">Message</label>
+                <textarea 
+                  className="w-full px-4 py-2 border rounded-md text-gray-800"
+                  rows="4"
+                  placeholder="How can we help you?" 
+                ></textarea>
+              </div>
+              <div className="flex justify-end space-x-2">
+                <button 
+                  type="button"
+                  onClick={() => setIsFormOpen(false)}
+                  className="px-4 py-2 text-gray-600 border rounded-md hover:bg-gray-100"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit"
+                  className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
