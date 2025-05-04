@@ -22,11 +22,11 @@ export default function ContactUs() {
             const navLinks = document.querySelectorAll('nav a');
             navLinks.forEach(link => {
               // Remove active class from all links
-              link.classList.remove('active', 'text-green-500');
+              link.classList.remove('active', 'text-green-400');
               
               // Add active class to contact link
               if (link.getAttribute('href') === '#contact') {
-                link.classList.add('active', 'text-green-500');
+                link.classList.add('active', 'text-green-400');
               }
             });
           }
@@ -42,7 +42,7 @@ export default function ContactUs() {
   }, []);
 
   return (
-    <section id="contact" className="py-16 bg-gradient-to-r from-teal-500 to-cyan-700">
+    <section id="contact" className="py-16 bg-slate-900">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: -10 }}
@@ -56,7 +56,7 @@ export default function ContactUs() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-white text-lg mb-10 max-w-2xl mx-auto font-sans"
+          className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-sans"
         >
           Contact our experts today for a customized solution that fits your
           specific energy requirements.
@@ -69,8 +69,8 @@ export default function ContactUs() {
         >
           <button
             onClick={handleConsultationRequest}
-            className="px-8 py-4 bg-white text-teal-600 font-medium rounded-full hover:bg-gray-100 
-            transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-sans"
+            className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-300 text-black font-medium rounded-full 
+            hover:opacity-90 transition-all duration-300 text-lg font-sans"
           >
             Request a Consultation
           </button>

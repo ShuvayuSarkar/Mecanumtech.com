@@ -8,7 +8,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 const navItems = [
   { name: 'About Us', href: '/#about' },
   { name: 'Our Products', href: '/#projects' },
-  { name: 'Contact Us', href: '/#contact' },
+  { name: 'Solutions', href: '/#solutions' },
+  { name: 'Technology', href: '/#technology' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 export default function Header() {
@@ -83,24 +85,13 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 px-4 font-sans ${
-        isScrolled 
-          ? 'mt-4' 
-          : 'mt-4'
-      }`}
+      className="fixed w-full z-50 transition-all duration-300 font-sans"
     >
       <div 
-        className={`max-w-[1600px] mx-auto rounded-xl transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/80 backdrop-blur-xl'
-            : 'bg-white/50 backdrop-blur-lg'
-        }`}
-        style={{
-          boxShadow: '0 0 15px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.06)'
-        }}
+        className="w-full transition-all duration-300 bg-[#0f1a30]"
       >
-        <nav className="flex items-center justify-between px-8 py-3">
-          <div className="flex-shrink-0 relative z-10 ml-4">
+        <nav className="max-w-[1600px] mx-auto flex items-center justify-between px-8 py-3">
+          <div className="flex-shrink-0 relative z-10">
             <Link 
               href="/"
               onClick={(e) => scrollToSection(e, '/')}
@@ -128,9 +119,8 @@ export default function Header() {
                 <a
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
-                  className={`px-5 py-2 text-lg font-bold rounded-lg transition-all duration-300 
-                    text-blue-900
-                    ${hoveredItem === item.name ? 'bg-gray-200/70' : ''}
+                  className={`px-3 py-2 text-base font-medium rounded-lg transition-all duration-300 
+                    ${hoveredItem === item.name ? 'text-green-400' : 'text-white'}
                   `}
                 >
                   {item.name}
@@ -139,12 +129,12 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center">
             <a
               href="/brochure.pdf"
               onClick={handleDownloadBrochure}
-              className="px-5 py-2 text-base font-bold text-gray-700 hover:text-gray-900 
-                transition-all duration-300 rounded-lg hover:bg-gray-50/50 cursor-pointer"
+              className="px-5 py-2 text-base font-medium text-black bg-gradient-to-r from-green-500 to-blue-300 
+                transition-all duration-300 rounded-full hover:opacity-90 cursor-pointer"
             >
               Download Brochure
             </a>
@@ -152,7 +142,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
+            className="lg:hidden p-2 rounded-lg text-white hover:text-green-400"
           >
             {isMobileMenuOpen ? (
               <XMarkIcon className="w-6 h-6" />
@@ -169,9 +159,9 @@ export default function Header() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden border-t border-gray-100"
+              className="lg:hidden border-t border-gray-700"
             >
-              <div className="flex flex-col py-4 px-6 bg-white/50 backdrop-blur-lg rounded-b-xl">
+              <div className="flex flex-col py-4 px-6 bg-[#0f1a30]">
                 {navItems.map((item) => (
                   <div 
                     key={item.name}
@@ -181,21 +171,20 @@ export default function Header() {
                     <a
                       href={item.href}
                       onClick={(e) => scrollToSection(e, item.href)}
-                      className={`block px-4 py-3 text-lg font-bold rounded-lg transition-all duration-300
-                        text-blue-900
-                        ${hoveredItem === item.name ? 'bg-gray-200/70' : ''}
+                      className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300
+                        ${hoveredItem === item.name ? 'text-green-400' : 'text-white'}
                       `}
                     >
                       {item.name}
                     </a>
                   </div>
                 ))}
-                <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
+                <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-700">
                   <a
                     href="/brochure.pdf"
                     onClick={handleDownloadBrochure}
-                    className="px-4 py-2.5 text-base font-bold text-gray-700 hover:text-gray-900 
-                      transition-all duration-300 rounded-lg hover:bg-gray-50/50 text-center cursor-pointer"
+                    className="px-4 py-2.5 text-base font-medium text-black bg-gradient-to-r from-green-500 to-blue-300 
+                      transition-all duration-300 rounded-full hover:opacity-90 text-center cursor-pointer"
                   >
                     Download Brochure
                   </a>
