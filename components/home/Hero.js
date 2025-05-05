@@ -138,7 +138,7 @@ export default function Hero() {
   });
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-slate-900">
+    <section id="hero" className="relative w-full h-screen overflow-hidden bg-slate-900">
       {/* Navigation Bar with increased z-index and padding */}
       <nav className="absolute top-0 w-full z-30 px-6 py-5">
         <div className="flex justify-between items-center">

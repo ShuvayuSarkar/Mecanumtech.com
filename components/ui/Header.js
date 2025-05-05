@@ -6,10 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const navItems = [
-  { name: 'About Us', href: '/#about' },
+  { name: 'About Us', href: '/#hero' },  // Changed from '/#about' to '/#hero'
   { name: 'Our Products', href: '/#projects' },
-  { name: 'Solutions', href: '/#solutions' },
-  { name: 'Technology', href: '/#technology' },
+  { name: 'Warranty', href: '/#warranty' },
   { name: 'Contact', href: '/#contact' },
 ];
 

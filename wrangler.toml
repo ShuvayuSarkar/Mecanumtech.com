@@ -1,5 +1,8 @@
 name = "mecanumtech"
-type = "website"
+compatibility_date = "2023-05-05"
 
 [site]
-bucket = "./out"  # Output directory from Next.js build
+bucket = "./out"
+
+# Add this line for Pages deployment
+pages_build_output_dir = "out"
