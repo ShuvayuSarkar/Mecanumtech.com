@@ -22,12 +22,7 @@ export default function Projects() {
       image: '/images/projects/battery-pack.jpg',
       description: 'Tailored energy storage solutions for commercial buildings and facilities.'
     },
-    {
-      title: 'Grid Storage Solution',
-      category: 'Utility',
-      image: '/images/projects/grid-storage.jpg',
-      description: 'Large-scale energy storage for grid stability and peak shaving.'
-    }
+
   ];
 
   return (
